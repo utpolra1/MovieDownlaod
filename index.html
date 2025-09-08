@@ -1,202 +1,368 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Movie Mania</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Ad‑Gated Movies</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts (Nunito) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-    <style>
-        /* CSS Variables & Base Styles (from original code - simplified) */
-        :root {
-            --font-family: 'Nunito', sans-serif;
-            --bg-color-light: #f4f4f9;
-            --secondary-bg-light: #ffffff;
-            --text-color-light: #1c1c1e;
-            --subtle-text-light: #6d6d72;
-            --primary-color-light: #007aff;
-            --border-color-light: #e0e0e0;
-            --bg-color-dark: #121212;
-            --secondary-bg-dark: #1c1c1e;
-            --text-color-dark: #ffffff;
-            --subtle-text-dark: #8e8e93;
-            --primary-color-dark: #0a84ff;
-            --border-color-dark: #38383a;
-        }
+  <style>
+    /* Theme Vars */
+    :root{
+      --font:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      --bg:#0f1115; --fg:#e9eef5; --muted:#9aa4b2; --card:#171a21; --border:#262b36;
+      --brand:#0a84ff; --brand-2:#7cc3ff;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:var(--font);background:var(--bg);color:var(--fg)}
+    a{color:inherit;text-decoration:none}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-family); transition: background-color 0.3s, color 0.3s; }
-        body.light-theme { background-color: var(--bg-color-light); color: var(--text-color-light); }
-        body.dark-theme { background-color: var(--bg-color-dark); color: var(--text-color-dark); }
-        #app { max-width: 500px; margin: 0 auto; padding-bottom: 70px; }
+    /* Layout */
+    .app{max-width:1100px;margin:0 auto;padding:16px 16px 96px}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:12px 8px;border-bottom:1px solid var(--border);position:sticky;top:0;background:linear-gradient(0deg,transparent,rgba(15,17,21,.8));backdrop-filter:blur(8px);z-index:5}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand i{font-size:28px;color:var(--brand)}
+    .brand h1{font-size:20px}
 
-        /* General UI components */
-        main { padding: 15px; }
-        .page { display: none; }
-        .page.active { display: block; animation: fadeIn 0.3s ease-in-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        h2 { font-size: 1.5rem; margin-bottom: 15px; }
-        .action-btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: 700; color: #fff; border: none; border-radius: 10px; cursor: pointer; transition: background-color 0.2s, opacity 0.2s; position: relative; display: flex; justify-content: center; align-items: center; }
-        .light-theme .action-btn { background-color: var(--primary-color-light); }
-        .dark-theme .action-btn { background-color: var(--primary-color-dark); }
+    .searchbar{display:flex;gap:8px;flex-wrap:wrap}
+    .searchbar input,.searchbar select{background:var(--card);border:1px solid var(--border);color:var(--fg);padding:10px 12px;border-radius:10px;outline:none;min-width:200px}
+    .searchbar input::placeholder{color:var(--muted)}
 
-        /* Movie Grid */
-        .movie-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .movie-card { padding: 10px; border-radius: 12px; text-align: center; cursor: pointer; transition: transform 0.2s; }
-        .movie-card:hover { transform: translateY(-5px); }
-        .light-theme .movie-card { background-color: var(--secondary-bg-light); border: 1px solid var(--border-color-light); }
-        .dark-theme .movie-card { background-color: var(--secondary-bg-dark); border: 1px solid var(--border-color-dark); }
-        .movie-card img { width: 100%; border-radius: 8px; margin-bottom: 10px; height: 180px; object-fit: cover; }
-        .movie-card h3 { font-size: 1rem; margin: 0; text-align: left; }
-        .movie-card p { font-size: 0.8rem; margin: 5px 0 0; text-align: left; }
-        .light-theme .movie-card p { color: var(--subtle-text-light); }
-        .dark-theme .movie-card p { color: var(--subtle-text-dark); }
+    /* Grid */
+    .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+    @media(min-width:680px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:980px){.grid{grid-template-columns:repeat(5,1fr)}}
 
-        /* Movie Player Page */
-        #movie-player-page h2 { margin-bottom: 0; }
-        #movie-video { width: 100%; height: 250px; background: #000; border-radius: 12px; margin-bottom: 20px; }
-        .player-info { padding: 15px; border-radius: 12px; }
-        .light-theme .player-info { background-color: var(--secondary-bg-light); border: 1px solid var(--border-color-light); }
-        .dark-theme .player-info { background-color: var(--secondary-bg-dark); border: 1px solid var(--border-color-dark); }
-        #movie-title { font-size: 1.5rem; margin-bottom: 10px; }
-        #movie-description { font-size: 0.9rem; margin-bottom: 20px; }
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:100%}
+    .thumb{position:relative;aspect-ratio:2/3;background:#111}
+    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .badge{position:absolute;left:8px;top:8px;background:rgba(10,132,255,.15);color:var(--brand-2);padding:2px 8px;border-radius:999px;font-size:12px;border:1px solid rgba(124,195,255,.3)}
+    .cbody{padding:10px 10px 12px;display:flex;flex-direction:column;gap:8px}
+    .title{font-size:15px;font-weight:700;line-height:1.2}
+    .meta{font-size:12px;color:var(--muted)}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 10px;border-radius:10px;border:1px solid var(--border);background:#1b202a;color:#eaf2ff;font-weight:700;cursor:pointer;transition:.15s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(180deg,#0a84ff,#006bce)}
 
-        /* Modal Styles (for ad loading) */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; }
-        .modal-content { padding: 30px; border-radius: 15px; text-align: center; }
-        .light-theme .modal-content { background-color: var(--secondary-bg-light); }
-        .dark-theme .modal-content { background-color: var(--secondary-bg-dark); }
-        .loader { border: 5px solid #f3f3f3; border-radius: 50%; border-top: 5px solid; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px; }
-        .light-theme .loader { border-top-color: var(--primary-color-light); }
-        .dark-theme .loader { border-top-color: var(--primary-color-dark); }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
+    /* Footer nav (mobile) */
+    .bottom-nav{position:fixed;left:0;right:0;bottom:0;background:rgba(23,26,33,.92);backdrop-filter:blur(8px);border-top:1px solid var(--border);z-index:6}
+    .bottom-nav .wrap{max-width:1100px;margin:0 auto;display:flex}
+    .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 8px;border:none;background:transparent;color:var(--muted);cursor:pointer}
+    .nav-btn.active{color:var(--brand)}
+    .nav-btn i{font-size:18px}
+    .nav-btn span{font-size:11px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+    .modal.show{display:flex}
+    .mcard{width:min(980px,100%);background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+    .mhead{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-bottom:1px solid var(--border)}
+    .mhead h3{font-size:16px}
+    .mhead .close{border:none;background:transparent;color:var(--fg);font-size:20px;cursor:pointer}
+    .mbody{padding:12px}
+    .player{position:relative;aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden}
+    .player iframe,.player video{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* Gate prompt */
+    .gate{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;border:1px dashed var(--border);border-radius:12px;background:rgba(10,132,255,.05)}
+    .gate p{color:var(--muted)}
+
+    /* Toast */
+    .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:84px;background:#1b202a;border:1px solid var(--border);color:#e9eef5;padding:10px 14px;border-radius:999px;display:none;z-index:100}
+    .toast.show{display:block}
+
+    /* Simple pages */
+    .page{display:none}
+    .page.active{display:block;animation:fade .18s ease}
+    @keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:none}}
+  </style>
 </head>
 <body>
-    <div id="app">
-        <header class="profile-header">
-            </header>
+  <div class="app">
+    <header>
+      <div class="brand">
+        <i class="fa-solid fa-film"></i>
+        <h1>Ad‑Gated Movies</h1>
+      </div>
+      <div class="searchbar">
+        <input id="search" placeholder="মুভির নাম খুঁজুন…" />
+        <select id="genre">
+          <option value="">সব ঘরানা</option>
+          <option>Action</option>
+          <option>Drama</option>
+          <option>Comedy</option>
+          <option>Thriller</option>
+          <option>Romance</option>
+        </select>
+      </div>
+    </header>
 
-        <main id="main-content">
-            <div id="movie-list-page" class="page active">
-                <h2>Popular Movies</h2>
-                <div class="movie-grid" id="movie-grid">
-                    </div>
-            </div>
+    <!-- PAGES -->
+    <section id="home" class="page active">
+      <div id="grid" class="grid"></div>
+    </section>
 
-            <div id="movie-player-page" class="page">
-                <video id="movie-video" controls></video>
-                <div class="player-info">
-                    <h3 id="movie-title"></h3>
-                    <p id="movie-description"></p>
-                    <a id="download-btn" class="action-btn" download href="#">Download Movie</a>
-                </div>
-            </div>
-        </main>
+    <section id="downloads" class="page">
+      <h2 style="margin:16px 6px 6px;font-size:18px">ডাউনলোডস</h2>
+      <div id="dl-list" class="grid"></div>
+    </section>
+
+    <section id="about" class="page">
+      <div style="padding:16px 6px;color:var(--muted);line-height:1.7">
+        <h2 style="font-size:18px;color:var(--fg);margin-bottom:8px">কীভাবে কাজ করে?</h2>
+        <p>প্রতি মুভি দেখার/ডাউনলোডের আগে ১টা রিওয়ার্ডেড অ্যাড দেখতে হবে। একবার অ্যাড দেখলে ঐ মুভিটা আজকের জন্য আনলক থাকবে।</p>
+        <p style="margin-top:8px">এই সাইট টেলিগ্রাম মিনি‑অ্যাপ হিসেবেও কাজ করবে, আবার ব্রাউজারেও চলবে।</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <div class="wrap">
+      <button class="nav-btn active" data-page="home"><i class="fa-solid fa-house"></i><span>হোম</span></button>
+      <button class="nav-btn" data-page="downloads"><i class="fa-solid fa-download"></i><span>ডাউনলোডস</span></button>
+      <button class="nav-btn" data-page="about"><i class="fa-solid fa-circle-info"></i><span>About</span></button>
     </div>
+  </nav>
 
-    <div id="loading-modal" class="modal">
-        <div class="modal-content"><div class="loader"></div><p>Loading Ad...</p></div>
+  <!-- Player Modal -->
+  <div id="playerModal" class="modal" role="dialog" aria-modal="true" aria-label="Player dialog">
+    <div class="mcard">
+      <div class="mhead">
+        <h3 id="modalTitle">Player</h3>
+        <button class="close" id="closeModal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="mbody">
+        <div id="gate" class="gate" hidden>
+          <i class="fa-solid fa-lock" style="font-size:28px;color:var(--brand)"></i>
+          <p>এই মুভি/ডাউনলোড আনলক করতে ১টা অ্যাড দেখুন।</p>
+          <button id="unlockBtn" class="btn primary"><i class="fa-solid fa-video"></i> Watch Ad to Unlock</button>
+        </div>
+        <div id="playerWrap" class="player" hidden></div>
+        <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+          <a id="openInTab" class="btn" href="#" target="_blank" rel="noopener" hidden><i class="fa-solid fa-up-right-from-square"></i> Open in new tab</a>
+          <a id="downloadBtn" class="btn" href="#" download hidden><i class="fa-solid fa-download"></i> Download</a>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <script src='//libtl.com/sdk.js' data-zone='9712189' data-sdk='show_9712189'></script>
+  <div id="toast" class="toast">Done!</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tg = window.Telegram.WebApp;
+  <!-- Telegram (optional) & Ad SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- Replace zone id with yours; must support show_XXXX promise API -->
+  <script src='//libtl.com/sdk.js' data-zone='9712189' data-sdk='show_9712189'></script>
+    <script src='//libtl.com/sdk.js' data-zone='9844547' data-sdk='show_9844547'></script>
 
-            // --- Configuration & Data ---
-            const MOVIES = [
-                { id: 1, title: "The Dark Knight", poster: "https://i.imgur.com/Qj4S3jO.jpeg", description: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 2, title: "Inception", poster: "https://i.imgur.com/G9Cj0L3.jpeg", description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 3, title: "Interstellar", poster: "https://i.imgur.com/Qj4S3jO.jpeg", description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
-                { id: 4, title: "Joker", poster: "https://i.imgur.com/Qj4S3jO.jpeg", description: "A mentally troubled stand-up comedian embarks on a downward spiral that leads to a crime spree.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" }
-            ];
+  <script>
+    // ---- Mini helpers ----
+    const $ = (q,root=document)=>root.querySelector(q);
+    const $$ = (q,root=document)=>Array.from(root.querySelectorAll(q));
+    const toast = (msg)=>{const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
 
-            // --- DOM Elements ---
-            const movieGridElem = document.getElementById('movie-grid');
-            const movieListPage = document.getElementById('movie-list-page');
-            const moviePlayerPage = document.getElementById('movie-player-page');
-            const loadingModal = document.getElementById('loading-modal');
-            const movieVideoElem = document.getElementById('movie-video');
-            const movieTitleElem = document.getElementById('movie-title');
-            const movieDescElem = document.getElementById('movie-description');
-            const downloadBtn = document.getElementById('download-btn');
+    // Telegram helpers (fallback for web)
+    const tg = (window.Telegram && Telegram.WebApp) ? Telegram.WebApp : null;
+    const alertBox = (m)=> tg? tg.showAlert(m): window.alert(m);
+    const haptic = (type)=>{ try{ if(tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred(type) }catch(_){} };
 
-            // --- State Management ---
-            let appState = {
-                currentMovie: null
-            };
+    // ---- Demo movie data (REPLACE streamUrl & downloadUrl with real links) ----
+    const MOVIES = [
+      {id:'m1', title:'Extraction', year:2020, genre:'Action', poster:'https://image.tmdb.org/t/p/w500/nygOUcBKPHFTbxsYRFZVePqgPK6.jpg',
+       streamUrl:'https://www.youtube.com/embed/L6P3nI6VnlY', downloadUrl:'https://filesamples.com/samples/video/mp4/sample_640x360.mp4', quality:'HD'},
+      {id:'m2', title:'The Intern', year:2015, genre:'Comedy', poster:'https://image.tmdb.org/t/p/w500/bqTFeaRrQqF0b3ukd5L0U6QhQ0P.jpg',
+       streamUrl:'https://www.youtube.com/embed/ZU3Xban0Y6A', downloadUrl:'https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4', quality:'HD'},
+      {id:'m3', title:'Jawan', year:2023, genre:'Action', poster:'https://image.tmdb.org/t/p/w500/b5mS8Aqj8WcN6iYG3PaY5E9OQj3.jpg',
+       streamUrl:'https://www.youtube.com/embed/MWOlnZSnXJo', downloadUrl:'https://filesamples.com/samples/video/mp4/sample_1280x720_surfing_with_audio.mp4', quality:'HD'},
+      {id:'m4', title:'La La Land', year:2016, genre:'Romance', poster:'https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg',
+       streamUrl:'https://www.youtube.com/embed/0pdqf4P9MB8', downloadUrl:'https://filesamples.com/samples/video/mp4/sample_960x540.mp4', quality:'HD'},
+      {id:'m5', title:'Drishyam 2', year:2022, genre:'Thriller', poster:'https://image.tmdb.org/t/p/w500/kSvzJsteUms9UpAJZmomr06Pq4j.jpg',
+       streamUrl:'https://www.youtube.com/embed/G9MK8iB4FNM', downloadUrl:'https://filesamples.com/samples/video/mp4/sample_640x360.mp4', quality:'HD'}
+    ];
 
-            // --- Core Functions ---
-            const initApp = () => {
-                tg.ready();
-                tg.expand();
-                document.body.className = `${tg.colorScheme}-theme`;
-                renderMovies();
-            };
+    // ---- State (localStorage based) ----
+    const DAY = ()=> new Date().toISOString().slice(0,10);
+    const key = (movieId)=> `gate_${movieId}_${DAY()}`; // unlocked for today only
+    const isUnlocked = (movieId)=> localStorage.getItem(key(movieId))==='1';
+    const setUnlocked = (movieId)=> localStorage.setItem(key(movieId),'1');
 
-            const renderMovies = () => {
-                movieGridElem.innerHTML = '';
-                MOVIES.forEach(movie => {
-                    const card = document.createElement('div');
-                    card.className = 'movie-card';
-                    card.innerHTML = `
-                        <img src="${movie.poster}" alt="${movie.title} poster">
-                        <h3>${movie.title}</h3>
-                        <p>Watch or Download</p>
-                    `;
-                    card.addEventListener('click', () => handleMovieClick(movie));
-                    movieGridElem.appendChild(card);
-                });
-            };
+    // Keep simple history of downloads (for Downloads page)
+    const DL_KEY = 'downloads_history_v1';
+    const getDownloads = ()=> JSON.parse(localStorage.getItem(DL_KEY)||'[]');
+    const addDownload = (m)=>{ const arr=getDownloads().filter(x=>x.id!==m.id); arr.unshift({id:m.id,title:m.title,poster:m.poster,ts:Date.now()}); localStorage.setItem(DL_KEY,JSON.stringify(arr.slice(0,40))) }
 
-            const handleMovieClick = (movie) => {
-                appState.currentMovie = movie;
-                loadingModal.style.display = 'flex';
-                show_9712189().then(() => {
-                    // Ad completed, show the movie player
-                    loadingModal.style.display = 'none';
-                    showPage('movie-player-page');
-                    loadMovie(movie);
-                }).catch(() => {
-                    // Ad failed to load
-                    loadingModal.style.display = 'none';
-                    tg.showAlert("Ad could not be loaded. Please try again later.");
-                });
-            };
-            
-            const loadMovie = (movie) => {
-                movieVideoElem.src = movie.videoUrl;
-                movieTitleElem.textContent = movie.title;
-                movieDescElem.textContent = movie.description;
-                downloadBtn.href = movie.videoUrl;
-                // Optional: Automatically play the video
-                movieVideoElem.play();
-            };
+    // ---- Render grid ----
+    const grid = $('#grid');
+    const dlList = $('#dl-list');
 
-            const showPage = (pageId) => {
-                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-                document.getElementById(pageId).classList.add('active');
-            };
+    function renderMovies(list){
+      grid.innerHTML = '';
+      list.forEach(m=>{
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="thumb">
+            <img loading="lazy" src="${m.poster}" alt="${m.title}" />
+            <span class="badge">${m.quality}</span>
+          </div>
+          <div class="cbody">
+            <div class="title">${m.title}</div>
+            <div class="meta">${m.genre} • ${m.year}</div>
+            <div class="actions">
+              <button class="btn primary" data-act="watch" data-id="${m.id}"><i class="fa-solid fa-play"></i> Watch</button>
+              <button class="btn" data-act="download" data-id="${m.id}"><i class="fa-solid fa-download"></i> Download</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
 
-            // Event listener for Telegram's back button
-            tg.onEvent('backButtonClicked', () => {
-                if (moviePlayerPage.classList.contains('active')) {
-                    movieVideoElem.pause(); // Pause video when going back
-                    showPage('movie-list-page');
-                    tg.BackButton.hide();
-                }
-            });
+    function renderDownloads(){
+      const list = getDownloads();
+      dlList.innerHTML='';
+      if(!list.length){ dlList.innerHTML = '<p style="color:var(--muted);padding:8px">এখনও কিছু ডাউনলোড করা হয়নি।</p>'; return; }
+      list.forEach(row=>{
+        const m = MOVIES.find(x=>x.id===row.id) || row; // fallback to saved row
+        const el = document.createElement('article');
+        el.className='card';
+        el.innerHTML = `
+          <div class="thumb"><img src="${m.poster}" alt="${m.title}"/></div>
+          <div class="cbody">
+            <div class="title">${m.title}</div>
+            <div class="actions">
+              <button class="btn primary" data-act="watch" data-id="${m.id}"><i class="fa-solid fa-play"></i> Watch</button>
+              <button class="btn" data-act="download" data-id="${m.id}"><i class="fa-solid fa-download"></i> Download</button>
+            </div>
+          </div>`;
+        dlList.appendChild(el);
+      })
+    }
 
-            // Initial call
-            initApp();
-        });
-    </script>
+    // Initial render
+    renderMovies(MOVIES);
+
+    // Search & filter
+    $('#search').addEventListener('input', applyFilter);
+    $('#genre').addEventListener('change', applyFilter);
+
+    function applyFilter(){
+      const q = $('#search').value.toLowerCase().trim();
+      const g = $('#genre').value;
+      const list = MOVIES.filter(m=>{
+        const okQ = !q || m.title.toLowerCase().includes(q);
+        const okG = !g || m.genre===g;
+        return okQ && okG;
+      });
+      renderMovies(list);
+    }
+
+    // Routing for bottom nav
+    $$('.nav-btn').forEach(b=> b.addEventListener('click', ()=>{
+      const page = b.dataset.page;
+      $$('.page').forEach(p=>p.classList.remove('active'));
+      $('#'+page).classList.add('active');
+      $$('.nav-btn').forEach(n=>n.classList.remove('active'));
+      b.classList.add('active');
+      if(page==='downloads') renderDownloads();
+    }))
+
+    // Global click (watch/download)
+    document.addEventListener('click', (e)=>{
+      const btn = e.target.closest('[data-act]');
+      if(!btn) return;
+      const id = btn.dataset.id;
+      const m = MOVIES.find(x=>x.id===id);
+      if(!m) return;
+      const act = btn.dataset.act; // watch or download
+      openModal(m, act);
+    })
+
+    // ---- Modal / Gate Logic ----
+    const modal = $('#playerModal');
+    const gate = $('#gate');
+    const playerWrap = $('#playerWrap');
+    const modalTitle = $('#modalTitle');
+    const openInTab = $('#openInTab');
+    const downloadBtn = $('#downloadBtn');
+
+    $('#closeModal').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); })
+
+    let currentMovie = null; let currentAction = 'watch';
+
+    function openModal(movie, action){
+      currentMovie = movie; currentAction = action;
+      modalTitle.textContent = movie.title + (action==='download'?' • Download':' • Watch');
+      playerWrap.innerHTML = '';
+      openInTab.hidden = true; downloadBtn.hidden = true;
+      // Show gate if locked
+      if(isUnlocked(movie.id)){
+        showContent();
+      } else {
+        gate.hidden = false; playerWrap.hidden = true;
+      }
+      modal.classList.add('show');
+    }
+    function closeModal(){ modal.classList.remove('show'); stopPlayer(); }
+
+    function stopPlayer(){ playerWrap.innerHTML=''; }
+
+    $('#unlockBtn').addEventListener('click', async ()=>{
+      try{
+        gate.hidden = true;
+        // show ad via SDK, must return a promise
+        if(typeof show_9844547 === 'function'){
+          await show_9844547();
+        } else {
+          // fallback if SDK not loaded – simulate a short wait
+          await new Promise(r=>setTimeout(r,2000));
+        }
+        setUnlocked(currentMovie.id);
+        haptic('success');
+        toast('Unlocked for today');
+        showContent();
+      }catch(err){
+        haptic('error');
+        alertBox('Ad could not be shown. Please try again.');
+        gate.hidden = false;
+      }
+    })
+
+    function showContent(){
+      gate.hidden = true; playerWrap.hidden = false;
+      // Render the requested content
+      if(currentAction==='watch'){
+        // Prefer embed iframe (YouTube or your HLS player page)
+        const iframe = document.createElement('iframe');
+        iframe.allow = 'fullscreen; picture-in-picture; encrypted-media';
+        iframe.src = currentMovie.streamUrl; // REPLACE with your own player URL if needed
+        playerWrap.appendChild(iframe);
+        openInTab.href = currentMovie.streamUrl; openInTab.hidden = false;
+        downloadBtn.hidden = false; downloadBtn.href = currentMovie.downloadUrl; // allow download after unlock too
+      } else {
+        // Show a simple download splash after unlock
+        playerWrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);">Unlocked • Click Download</div>`;
+        openInTab.href = currentMovie.downloadUrl; openInTab.hidden = false;
+        downloadBtn.href = currentMovie.downloadUrl; downloadBtn.hidden = false;
+        addDownload(currentMovie);
+      }
+    }
+
+    // Improve UX on iOS/Android full‑height
+    document.addEventListener('touchstart', ()=>{}, {passive:true});
+
+    // If opened inside Telegram, expand
+    if(tg){ try{ tg.ready(); tg.expand(); }catch(_){} }
+  </script>
 </body>
 </html>
