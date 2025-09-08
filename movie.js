@@ -1,6 +1,16 @@
 // movie.js
 export const MOVIES = [
   {
+    id: 'aag',
+    title: 'Baaghi 4 ',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://www.filmyzilla20.com/files/images/Baaghi-4-(2025)-hindi-movie.jpg?time=1757354400',
+    streamUrl: 'https://d-s.io/e/gqqlgdkjlst1',
+    downloadUrl: 'https://www.filmyzilla20.com/downloads/32263/1/server_1/',
+    quality: 'HD'
+  },
+  {
     id: 'm1',
     title: 'Extraction',
     year: 2020,
