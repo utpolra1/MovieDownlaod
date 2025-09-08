@@ -1,0 +1,53 @@
+// movie.js
+export const MOVIES = [
+  {
+    id: 'm1',
+    title: 'Extraction',
+    year: 2020,
+    genre: 'Action',
+    poster: 'https://image.tmdb.org/t/p/w500/nygOUcBKPHFTbxsYRFZVePqgPK6.jpg',
+    streamUrl: 'https://www.youtube.com/embed/L6P3nI6VnlY',
+    downloadUrl: 'https://filesamples.com/samples/video/mp4/sample_640x360.mp4',
+    quality: 'HD'
+  },
+  {
+    id: 'm2',
+    title: 'The Intern',
+    year: 2015,
+    genre: 'Comedy',
+    poster: 'https://image.tmdb.org/t/p/w500/bqTFeaRrQqF0b3ukd5L0U6QhQ0P.jpg',
+    streamUrl: 'https://www.youtube.com/embed/ZU3Xban0Y6A',
+    downloadUrl: 'https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4',
+    quality: 'HD'
+  },
+  {
+    id: 'm3',
+    title: 'Jawan',
+    year: 2023,
+    genre: 'Action',
+    poster: 'https://image.tmdb.org/t/p/w500/b5mS8Aqj8WcN6iYG3PaY5E9OQj3.jpg',
+    streamUrl: 'https://www.youtube.com/embed/MWOlnZSnXJo',
+    downloadUrl: 'https://filesamples.com/samples/video/mp4/sample_1280x720_surfing_with_audio.mp4',
+    quality: 'HD'
+  },
+  {
+    id: 'm4',
+    title: 'La La Land',
+    year: 2016,
+    genre: 'Romance',
+    poster: 'https://image.tmdb.org/t/p/w500/uDO8zWDhfWwoFdKS4fzkUJt0Rf0.jpg',
+    streamUrl: 'https://www.youtube.com/embed/0pdqf4P9MB8',
+    downloadUrl: 'https://filesamples.com/samples/video/mp4/sample_960x540.mp4',
+    quality: 'HD'
+  },
+  {
+    id: 'm5',
+    title: 'Drishyam 2',
+    year: 2022,
+    genre: 'Thriller',
+    poster: 'https://image.tmdb.org/t/p/w500/kSvzJsteUms9UpAJZmomr06Pq4j.jpg',
+    streamUrl: 'https://www.youtube.com/embed/G9MK8iB4FNM',
+    downloadUrl: 'https://filesamples.com/samples/video/mp4/sample_640x360.mp4',
+    quality: 'HD'
+  }
+];
