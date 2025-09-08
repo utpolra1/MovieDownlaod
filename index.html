@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Movie Mania</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <style>
+        /* CSS Variables & Base Styles (from original code - simplified) */
+        :root {
+            --font-family: 'Nunito', sans-serif;
+            --bg-color-light: #f4f4f9;
+            --secondary-bg-light: #ffffff;
+            --text-color-light: #1c1c1e;
+            --subtle-text-light: #6d6d72;
+            --primary-color-light: #007aff;
+            --border-color-light: #e0e0e0;
+            --bg-color-dark: #121212;
+            --secondary-bg-dark: #1c1c1e;
+            --text-color-dark: #ffffff;
+            --subtle-text-dark: #8e8e93;
+            --primary-color-dark: #0a84ff;
+            --border-color-dark: #38383a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-family); transition: background-color 0.3s, color 0.3s; }
+        body.light-theme { background-color: var(--bg-color-light); color: var(--text-color-light); }
+        body.dark-theme { background-color: var(--bg-color-dark); color: var(--text-color-dark); }
+        #app { max-width: 500px; margin: 0 auto; padding-bottom: 70px; }
+
+        /* General UI components */
+        main { padding: 15px; }
+        .page { display: none; }
+        .page.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        h2 { font-size: 1.5rem; margin-bottom: 15px; }
+        .action-btn { width: 100%; padding: 15px; font-size: 1rem; font-weight: 700; color: #fff; border: none; border-radius: 10px; cursor: pointer; transition: background-color 0.2s, opacity 0.2s; position: relative; display: flex; justify-content: center; align-items: center; }
+        .light-theme .action-btn { background-color: var(--primary-color-light); }
+        .dark-theme .action-btn { background-color: var(--primary-color-dark); }
+
+        /* Movie Grid */
+        .movie-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .movie-card { padding: 10px; border-radius: 12px; text-align: center; cursor: pointer; transition: transform 0.2s; }
+        .movie-card:hover { transform: translateY(-5px); }
+        .light-theme .movie-card { background-color: var(--secondary-bg-light); border: 1px solid var(--border-color-light); }
+        .dark-theme .movie-card { background-color: var(--secondary-bg-dark); border: 1px solid var(--border-color-dark); }
+        .movie-card img { width: 100%; border-radius: 8px; margin-bottom: 10px; height: 180px; object-fit: cover; }
+        .movie-card h3 { font-size: 1rem; margin: 0; text-align: left; }
+        .movie-card p { font-size: 0.8rem; margin: 5px 0 0; text-align: left; }
+        .light-theme .movie-card p { color: var(--subtle-text-light); }
+        .dark-theme .movie-card p { color: var(--subtle-text-dark); }
+
+        /* Movie Player Page */
+        #movie-player-page h2 { margin-bottom: 0; }
+        #movie-video { width: 100%; height: 250px; background: #000; border-radius: 12px; margin-bottom: 20px; }
+        .player-info { padding: 15px; border-radius: 12px; }
+        .light-theme .player-info { background-color: var(--secondary-bg-light); border: 1px solid var(--border-color-light); }
+        .dark-theme .player-info { background-color: var(--secondary-bg-dark); border: 1px solid var(--border-color-dark); }
+        #movie-title { font-size: 1.5rem; margin-bottom: 10px; }
+        #movie-description { font-size: 0.9rem; margin-bottom: 20px; }
+
+        /* Modal Styles (for ad loading) */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); justify-content: center; align-items: center; }
+        .modal-content { padding: 30px; border-radius: 15px; text-align: center; }
+        .light-theme .modal-content { background-color: var(--secondary-bg-light); }
+        .dark-theme .modal-content { background-color: var(--secondary-bg-dark); }
+        .loader { border: 5px solid #f3f3f3; border-radius: 50%; border-top: 5px solid; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 15px; }
+        .light-theme .loader { border-top-color: var(--primary-color-light); }
+        .dark-theme .loader { border-top-color: var(--primary-color-dark); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <header class="profile-header">
+            </header>
+
+        <main id="main-content">
+            <div id="movie-list-page" class="page active">
+                <h2>Popular Movies</h2>
+                <div class="movie-grid" id="movie-grid">
+                    </div>
+            </div>
+
+            <div id="movie-player-page" class="page">
+                <video id="movie-video" controls></video>
+                <div class="player-info">
+                    <h3 id="movie-title"></h3>
+                    <p id="movie-description"></p>
+                    <a id="download-btn" class="action-btn" download href="#">Download Movie</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loading-modal" class="modal">
+        <div class="modal-content"><div class="loader"></div><p>Loading Ad...</p></div>
+    </div>
+
+    <script src='//libtl.com/sdk.js' data-zone='9712189' data-sdk='show_9712189'></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tg = window.Telegram.WebApp;
+
+            // --- Configuration & Data ---
+            const MOVIES = [
+                { id: 1, title: "The Dark Knight", poster: "https://i.imgur.com/Qj4S3jO.jpeg", description: "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 2, title: "Inception", poster: "https://i.imgur.com/G9Cj0L3.jpeg", description: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 3, title: "Interstellar", poster: "https://i.imgur.com/Qj4S3jO.jpeg", description: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" },
+                { id: 4, title: "Joker", poster: "https://i.imgur.com/Qj4S3jO.jpeg", description: "A mentally troubled stand-up comedian embarks on a downward spiral that leads to a crime spree.", videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4" }
+            ];
+
+            // --- DOM Elements ---
+            const movieGridElem = document.getElementById('movie-grid');
+            const movieListPage = document.getElementById('movie-list-page');
+            const moviePlayerPage = document.getElementById('movie-player-page');
+            const loadingModal = document.getElementById('loading-modal');
+            const movieVideoElem = document.getElementById('movie-video');
+            const movieTitleElem = document.getElementById('movie-title');
+            const movieDescElem = document.getElementById('movie-description');
+            const downloadBtn = document.getElementById('download-btn');
+
+            // --- State Management ---
+            let appState = {
+                currentMovie: null
+            };
+
+            // --- Core Functions ---
+            const initApp = () => {
+                tg.ready();
+                tg.expand();
+                document.body.className = `${tg.colorScheme}-theme`;
+                renderMovies();
+            };
+
+            const renderMovies = () => {
+                movieGridElem.innerHTML = '';
+                MOVIES.forEach(movie => {
+                    const card = document.createElement('div');
+                    card.className = 'movie-card';
+                    card.innerHTML = `
+                        <img src="${movie.poster}" alt="${movie.title} poster">
+                        <h3>${movie.title}</h3>
+                        <p>Watch or Download</p>
+                    `;
+                    card.addEventListener('click', () => handleMovieClick(movie));
+                    movieGridElem.appendChild(card);
+                });
+            };
+
+            const handleMovieClick = (movie) => {
+                appState.currentMovie = movie;
+                loadingModal.style.display = 'flex';
+                show_9712189().then(() => {
+                    // Ad completed, show the movie player
+                    loadingModal.style.display = 'none';
+                    showPage('movie-player-page');
+                    loadMovie(movie);
+                }).catch(() => {
+                    // Ad failed to load
+                    loadingModal.style.display = 'none';
+                    tg.showAlert("Ad could not be loaded. Please try again later.");
+                });
+            };
+            
+            const loadMovie = (movie) => {
+                movieVideoElem.src = movie.videoUrl;
+                movieTitleElem.textContent = movie.title;
+                movieDescElem.textContent = movie.description;
+                downloadBtn.href = movie.videoUrl;
+                // Optional: Automatically play the video
+                movieVideoElem.play();
+            };
+
+            const showPage = (pageId) => {
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
+            };
+
+            // Event listener for Telegram's back button
+            tg.onEvent('backButtonClicked', () => {
+                if (moviePlayerPage.classList.contains('active')) {
+                    movieVideoElem.pause(); // Pause video when going back
+                    showPage('movie-list-page');
+                    tg.BackButton.hide();
+                }
+            });
+
+            // Initial call
+            initApp();
+        });
+    </script>
+</body>
+</html>
