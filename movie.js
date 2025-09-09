@@ -1,7 +1,7 @@
 // movie.js
 export const MOVIES = [
   {
-    id: 'm3',
+    id: 'm6',
     title: 'Baaghi 4 ',
     year: 2025,
     genre: 'Action',
