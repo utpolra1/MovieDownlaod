@@ -1,4 +1,14 @@
 const MOVIES = [
+  {
+    id: 'm7',
+    title: 'Baaghi 4',
+    year: 2025,
+    genre: 'Drama',
+    poster: 'https://i.postimg.cc/nr9QdP45/photo-2025-07-10-19-02-28.jpg',
+    streamUrl: 'https://rumble.com/embed/v6vop8c/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6vop8c/?pub=34yunp',
+    quality: 'HD'
+  },
   {
     id: 'm6',
     title: 'Baaghi 4',
