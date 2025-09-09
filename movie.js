@@ -1,7 +1,7 @@
 const MOVIES = [
   {
     id: 'm7',
-    title: 'Baaghi 4',
+    title: 'Bachelor Point S05 Ep17-24 COMBINED BANGLA',
     year: 2025,
     genre: 'Drama',
     poster: 'https://i.postimg.cc/nr9QdP45/photo-2025-07-10-19-02-28.jpg',
