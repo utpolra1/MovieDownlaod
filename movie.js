@@ -1,33 +1,13 @@
 // movie.js
 export const MOVIES = [
   {
-    id: 'aag',
+    id: 'm3',
     title: 'Baaghi 4 ',
     year: 2025,
     genre: 'Action',
     poster: 'https://www.filmyzilla20.com/files/images/Baaghi-4-(2025)-hindi-movie.jpg?time=1757354400',
     streamUrl: 'https://d-s.io/e/gqqlgdkjlst1',
     downloadUrl: 'https://www.filmyzilla20.com/downloads/32263/1/server_1/',
-    quality: 'HD'
-  },
-  {
-    id: 'm1',
-    title: 'Extraction',
-    year: 2020,
-    genre: 'Action',
-    poster: 'https://image.tmdb.org/t/p/w500/nygOUcBKPHFTbxsYRFZVePqgPK6.jpg',
-    streamUrl: 'https://www.youtube.com/embed/L6P3nI6VnlY',
-    downloadUrl: 'https://filesamples.com/samples/video/mp4/sample_640x360.mp4',
-    quality: 'HD'
-  },
-  {
-    id: 'm2',
-    title: 'The Intern',
-    year: 2015,
-    genre: 'Comedy',
-    poster: 'https://image.tmdb.org/t/p/w500/bqTFeaRrQqF0b3ukd5L0U6QhQ0P.jpg',
-    streamUrl: 'https://www.youtube.com/embed/ZU3Xban0Y6A',
-    downloadUrl: 'https://filesamples.com/samples/video/mp4/sample_960x400_ocean_with_audio.mp4',
     quality: 'HD'
   },
   {
