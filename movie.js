@@ -5,7 +5,7 @@ const MOVIES = [
     year: 2025,
     genre: 'Drama',
     poster: 'https://www.facebook.com/messenger_media/?attachment_id=817260544164229&message_id=mid.%24cAABbBCiFb_SfZaMhgWZNF3Txigrl&thread_id=100073417830388',
-    streamUrl: 'https://rumble.com/embed/v6wk2n8/?pub=34yunp,
+    streamUrl: 'https://rumble.com/embed/v6wk2n8/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk2n8/?pub=34yunp',
     quality: 'HD'
   },
