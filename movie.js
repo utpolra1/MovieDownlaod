@@ -1,10 +1,20 @@
 const MOVIES = [
   {
+    id: 'm9',
+    title: 'Thammudu 2025',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSblQtUT5EFRFr8wVf7wDdpz9ccdoXGGu-0hA&s',
+    streamUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
     id: 'm8',
-    title: 'Thammudu',
+    title: 'The Kapil Sharma Show',
     year: 2025,
     genre: 'Drama',
-    poster: 'https://www.facebook.com/messenger_media/?attachment_id=817260544164229&message_id=mid.%24cAABbBCiFb_SfZaMhgWZNF3Txigrl&thread_id=100073417830388',
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4WasVkVXxoqxzsuQjqd-aQvV3tOgVXWzGrA&s',
     streamUrl: 'https://rumble.com/embed/v6wk2n8/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk2n8/?pub=34yunp',
     quality: 'HD'
