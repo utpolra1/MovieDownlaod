@@ -1,5 +1,25 @@
 const MOVIES = [
   {
+    id: 'm11',
+    title: 'Bahurup.2025',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://m.media-amazon.com/images/M/MV5BYWI2MDgyNjAtNmFjOC00NzJmLThkMDAtMTc0OTc0NTg0NWZlXkEyXkFqcGc@._V1_.jpg',
+    streamUrl: 'https://rumble.com/embed/v6wk49e/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm10',
+    title: 'Insaaf.2025.Bnagla',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://m.media-amazon.com/images/M/MV5BMzc4OWQyNDYtZTBhNS00OTg4LTlhOTMtNTJjMWI2MjBkNmMyXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg',
+    streamUrl: 'https://rumble.com/embed/v6wk426/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
     id: 'm9',
     title: 'Thammudu 2025',
     year: 2025,
