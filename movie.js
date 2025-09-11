@@ -1,5 +1,15 @@
 const MOVIES = [
   {
+    id: 'm151',
+    title: 'Bachelor Point S05 Ep25',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4a5DEV1KZirWfiKV8TpCALItHmybuk4LRmg&s',
+    streamUrl: 'https://rumble.com/embed/v6wlolq/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
     id: 'm11',
     title: 'Bahurup.2025',
     year: 2025,
