@@ -1,10 +1,20 @@
 const MOVIES = [
   {
+    id: 'm1555551',
+    title: 'Bachelor Point S05 Ep26',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://cdn.bongo-solutions.com/abfea462-f64d-491e-9cd9-75ee001f45b0/content/d961fe4c-1ae8-4f8f-ac91-e009a3a32391/623937d7-bd21-4329-97ef-b9b4f34b5539.jpg',
+    streamUrl: 'https://rumble.com/embed/v6wlpdm/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
     id: 'm15551',
     title: 'Bachelor Point S05 Ep26',
     year: 2025,
     genre: 'Action',
-    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4a5DEV1KZirWfiKV8TpCALItHmybuk4LRmg&s',
+    poster: 'https://cdn.bongo-solutions.com/abfea462-f64d-491e-9cd9-75ee001f45b0/content/d961fe4c-1ae8-4f8f-ac91-e009a3a32391/623937d7-bd21-4329-97ef-b9b4f34b5539.jpg',
     streamUrl: 'https://rumble.com/embed/v6wloqu/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -14,7 +24,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep25',
     year: 2025,
     genre: 'Action',
-    poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4a5DEV1KZirWfiKV8TpCALItHmybuk4LRmg&s',
+    poster: 'https://cdn.bongo-solutions.com/abfea462-f64d-491e-9cd9-75ee001f45b0/content/d961fe4c-1ae8-4f8f-ac91-e009a3a32391/623937d7-bd21-4329-97ef-b9b4f34b5539.jpg',
     streamUrl: 'https://rumble.com/embed/v6wlolq/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
