@@ -1,6 +1,16 @@
 const MOVIES = [
   {
     id: 'm155155251',
+    title: 'Bachelor Point S05 Ep32',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://cdn.bongo-solutions.com/abfea462-f64d-491e-9cd9-75ee001f45b0/content/d961fe4c-1ae8-4f8f-ac91-e009a3a32391/623937d7-bd21-4329-97ef-b9b4f34b5539.jpg',
+    streamUrl: 'https://rumble.com/embed/v6wls4c/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm155155251',
     title: 'Bachelor Point S05 Ep31',
     year: 2025,
     genre: 'Action',
