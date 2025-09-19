@@ -1,5 +1,15 @@
 const MOVIES = [
   {
+    id: 'm150566551',
+    title: 'Jolly LLB 3',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://upload.wikimedia.org/wikipedia/en/1/1d/Jolly_LLB_3_poster.jpg',
+    streamUrl: 'https://rumble.com/embed/v6wzzje/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
     id: 'm1556651',
     title: 'Bachelor Point S05 Ep32',
     year: 2025,
