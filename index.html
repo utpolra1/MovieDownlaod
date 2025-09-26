@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>Ad‑Gated Movies</title>
+  <title>Ad-Gated Movies</title>
 
   <!-- Google Fonts (Nunito) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -91,7 +91,7 @@
     <header>
       <div class="brand">
         <i class="fa-solid fa-film"></i>
-        <h1>Ad‑Gated Movies</h1>
+        <h1>Ad-Gated Movies</h1>
       </div>
       <div class="searchbar">
         <input id="search" placeholder="মুভির নাম খুঁজুন…" />
@@ -119,8 +119,8 @@
     <section id="about" class="page">
       <div style="padding:16px 6px;color:var(--muted);line-height:1.7">
         <h2 style="font-size:18px;color:var(--fg);margin-bottom:8px">কীভাবে কাজ করে?</h2>
-        <p>প্রতি মুভি দেখার/ডাউনলোডের আগে ১টা রিওয়ার্ডেড অ্যাড দেখতে হবে। একবার অ্যাড দেখলে ঐ মুভিটা আজকের জন্য আনলক থাকবে।</p>
-        <p style="margin-top:8px">এই সাইট টেলিগ্রাম মিনি‑অ্যাপ হিসেবেও কাজ করবে, আবার ব্রাউজারেও চলবে।</p>
+        <p>প্রতি মুভি দেখার/ডাউনলোডের আগে ৫টা রিওয়ার্ডেড অ্যাড দেখতে হবে। একবার ৫টা অ্যাড দেখলে ঐ মুভিটা আজকের জন্য আনলক থাকবে।</p>
+        <p style="margin-top:8px">এই সাইট টেলিগ্রাম মিনি-অ্যাপ হিসেবেও কাজ করবে, আবার ব্রাউজারেও চলবে।</p>
       </div>
     </section>
   </div>
@@ -144,7 +144,7 @@
       <div class="mbody">
         <div id="gate" class="gate" hidden>
           <i class="fa-solid fa-lock" style="font-size:28px;color:var(--brand)"></i>
-          <p>এই মুভি/ডাউনলোড আনলক করতে ১টা অ্যাড দেখুন।</p>
+          <p id="gateMsg">এই মুভি/ডাউনলোড আনলক করতে ৫টা অ্যাড দেখুন।</p>
           <button id="unlockBtn" class="btn primary"><i class="fa-solid fa-video"></i> Watch Ad to Unlock</button>
         </div>
         <div id="playerWrap" class="player" hidden></div>
@@ -160,7 +160,6 @@
 
   <!-- Telegram (optional) & Ad SDK -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <!-- Replace zone id with yours; must support show_XXXX promise API -->
   <script src='//libtl.com/sdk.js' data-zone='9844547' data-sdk='show_9844547'></script>
   <script src="movie.js"></script>
   <script>
@@ -169,24 +168,30 @@
     const $$ = (q,root=document)=>Array.from(root.querySelectorAll(q));
     const toast = (msg)=>{const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1500)}
 
-    // Telegram helpers (fallback for web)
+    // Telegram helpers
     const tg = (window.Telegram && Telegram.WebApp) ? Telegram.WebApp : null;
     const alertBox = (m)=> tg? tg.showAlert(m): window.alert(m);
     const haptic = (type)=>{ try{ if(tg && tg.HapticFeedback) tg.HapticFeedback.notificationOccurred(type) }catch(_){} };
 
-
-    // ---- State (localStorage based) ----
+    // ---- State ----
     const DAY = ()=> new Date().toISOString().slice(0,10);
-    const key = (movieId)=> `gate_${movieId}_${DAY()}`; // unlocked for today only
+    const key = (movieId)=> `gate_${movieId}_${DAY()}`;
+    const adKey = (movieId)=> `ads_${movieId}_${DAY()}`;
     const isUnlocked = (movieId)=> localStorage.getItem(key(movieId))==='1';
     const setUnlocked = (movieId)=> localStorage.setItem(key(movieId),'1');
+    const getAdCount = (movieId)=> parseInt(localStorage.getItem(adKey(movieId))||'0');
+    const addAdCount = (movieId)=> {
+      const n = getAdCount(movieId)+1;
+      localStorage.setItem(adKey(movieId), n);
+      return n;
+    };
 
-    // Keep simple history of downloads (for Downloads page)
+    // Downloads
     const DL_KEY = 'downloads_history_v1';
     const getDownloads = ()=> JSON.parse(localStorage.getItem(DL_KEY)||'[]');
     const addDownload = (m)=>{ const arr=getDownloads().filter(x=>x.id!==m.id); arr.unshift({id:m.id,title:m.title,poster:m.poster,ts:Date.now()}); localStorage.setItem(DL_KEY,JSON.stringify(arr.slice(0,40))) }
 
-    // ---- Render grid ----
+    // Render Movies
     const grid = $('#grid');
     const dlList = $('#dl-list');
 
@@ -218,7 +223,7 @@
       dlList.innerHTML='';
       if(!list.length){ dlList.innerHTML = '<p style="color:var(--muted);padding:8px">এখনও কিছু ডাউনলোড করা হয়নি।</p>'; return; }
       list.forEach(row=>{
-        const m = MOVIES.find(x=>x.id===row.id) || row; // fallback to saved row
+        const m = MOVIES.find(x=>x.id===row.id) || row;
         const el = document.createElement('article');
         el.className='card';
         el.innerHTML = `
@@ -234,10 +239,9 @@
       })
     }
 
-    // Initial render
     renderMovies(MOVIES);
 
-    // Search & filter
+    // Filter
     $('#search').addEventListener('input', applyFilter);
     $('#genre').addEventListener('change', applyFilter);
 
@@ -252,7 +256,7 @@
       renderMovies(list);
     }
 
-    // Routing for bottom nav
+    // Routing
     $$('.nav-btn').forEach(b=> b.addEventListener('click', ()=>{
       const page = b.dataset.page;
       $$('.page').forEach(p=>p.classList.remove('active'));
@@ -262,20 +266,21 @@
       if(page==='downloads') renderDownloads();
     }))
 
-    // Global click (watch/download)
+    // Global click
     document.addEventListener('click', (e)=>{
       const btn = e.target.closest('[data-act]');
       if(!btn) return;
       const id = btn.dataset.id;
       const m = MOVIES.find(x=>x.id===id);
       if(!m) return;
-      const act = btn.dataset.act; // watch or download
+      const act = btn.dataset.act;
       openModal(m, act);
     })
 
     // ---- Modal / Gate Logic ----
     const modal = $('#playerModal');
     const gate = $('#gate');
+    const gateMsg = $('#gateMsg');
     const playerWrap = $('#playerWrap');
     const modalTitle = $('#modalTitle');
     const openInTab = $('#openInTab');
@@ -291,64 +296,66 @@
       modalTitle.textContent = movie.title + (action==='download'?' • Download':' • Watch');
       playerWrap.innerHTML = '';
       openInTab.hidden = true; downloadBtn.hidden = true;
-      // Show gate if locked
       if(isUnlocked(movie.id)){
         showContent();
       } else {
+        updateGateMsg();
         gate.hidden = false; playerWrap.hidden = true;
       }
       modal.classList.add('show');
     }
-    function closeModal(){ modal.classList.remove('show'); stopPlayer(); }
+    function closeModal(){ modal.classList.remove('show'); playerWrap.innerHTML=''; }
 
-    function stopPlayer(){ playerWrap.innerHTML=''; }
+    function updateGateMsg(){
+      const count = getAdCount(currentMovie.id);
+      gateMsg.textContent = `এই মুভি আনলক করতে ৫টা অ্যাড দেখুন। দেখা হয়েছে ${count}/5`;
+    }
 
+    function showContent(){
+      gate.hidden = true;
+      playerWrap.hidden = false;
+      if(currentAction==='watch'){
+        playerWrap.innerHTML = `<iframe src="${currentMovie.embed}" allowfullscreen></iframe>`;
+        openInTab.href = currentMovie.embed; openInTab.hidden = false;
+      } else {
+        playerWrap.innerHTML = `<div style="padding:20px;text-align:center">Ready to Download</div>`;
+        downloadBtn.href = currentMovie.download; downloadBtn.hidden = false;
+        addDownload(currentMovie);
+      }
+    }
+
+    // Unlock Button event
     $('#unlockBtn').addEventListener('click', async ()=>{
       try{
         gate.hidden = true;
-        // show ad via SDK, must return a promise
         if(typeof show_9844547 === 'function'){
           await show_9844547();
         } else {
-          // fallback if SDK not loaded – simulate a short wait
           await new Promise(r=>setTimeout(r,2000));
         }
-        setUnlocked(currentMovie.id);
-        haptic('success');
-        toast('Unlocked for today');
-        showContent();
+
+        const seen = addAdCount(currentMovie.id);
+        if(seen >= 5){
+          setUnlocked(currentMovie.id);
+          haptic('success');
+          toast('Movie unlocked for today!');
+          showContent();
+        } else {
+          haptic('success');
+          toast(`Ad ${seen}/5 watched. Watch more to unlock.`);
+          gate.hidden = false;
+          updateGateMsg();
+        }
+
       }catch(err){
         haptic('error');
         alertBox('Ad could not be shown. Please try again.');
         gate.hidden = false;
       }
-    })
+    });
 
-    function showContent(){
-      gate.hidden = true; playerWrap.hidden = false;
-      // Render the requested content
-      if(currentAction==='watch'){
-        // Prefer embed iframe (YouTube or your HLS player page)
-        const iframe = document.createElement('iframe');
-        iframe.allow = 'fullscreen; picture-in-picture; encrypted-media';
-        iframe.src = currentMovie.streamUrl; // REPLACE with your own player URL if needed
-        playerWrap.appendChild(iframe);
-        openInTab.href = currentMovie.streamUrl; openInTab.hidden = false;
-        downloadBtn.hidden = false; downloadBtn.href = currentMovie.downloadUrl; // allow download after unlock too
-      } else {
-        // Show a simple download splash after unlock
-        playerWrap.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--muted);">Unlocked • Click Download</div>`;
-        openInTab.href = currentMovie.downloadUrl; openInTab.hidden = false;
-        downloadBtn.href = currentMovie.downloadUrl; downloadBtn.hidden = false;
-        addDownload(currentMovie);
-      }
-    }
-
-    // Improve UX on iOS/Android full‑height
-    document.addEventListener('touchstart', ()=>{}, {passive:true});
-
-    // If opened inside Telegram, expand
-    if(tg){ try{ tg.ready(); tg.expand(); }catch(_){} }
+    // For first render update gate message
+    if(currentMovie) updateGateMsg();
   </script>
 </body>
 </html>
