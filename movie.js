@@ -1,5 +1,15 @@
 const MOVIES = [
   {
+    id: 'm345665251',
+    title: 'Raghu Dakat - রঘু ডাকাত',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://m.media-amazon.com/images/M/MV5BNDkwNGY0MTItZTcyOC00MDYwLTllYzMtOTA0MmYyMTUzMmYyXkEyXkFqcGc@._V1_.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xbnec/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
     id: 'm150566551',
     title: 'Jolly LLB 3',
     year: 2025,
