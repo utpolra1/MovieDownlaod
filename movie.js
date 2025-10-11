@@ -1,5 +1,85 @@
 const MOVIES = [
   {
+    id: 'm1556657241',
+    title: 'Bachelor Point S05 Ep40',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xyuy0/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm1556678151',
+    title: 'Bachelor Point S05 Ep39',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xyuw0/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm1556654661',
+    title: 'Bachelor Point S05 Ep38',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xyutc/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm1554656651',
+    title: 'Bachelor Point S05 Ep37',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xyuri/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm115564478651',
+    title: 'Bachelor Point S05 Ep36',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xyupi/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm155644651',
+    title: 'Bachelor Point S05 Ep35',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xyuna/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm155677651',
+    title: 'Bachelor Point S05 Ep34',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xyuk2/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
+    id: 'm155566651',
+    title: 'Bachelor Point S05 Ep33',
+    year: 2025,
+    genre: 'Action',
+    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    streamUrl: 'https://rumble.com/embed/v6xxgrs/?pub=34yunp',
+    downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
+    quality: 'HD'
+  },
+  {
     id: 'm345665251',
     title: 'Raghu Dakat - রঘু ডাকাত',
     year: 2025,
