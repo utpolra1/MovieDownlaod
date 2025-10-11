@@ -4,7 +4,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep40',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xyuy0/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -14,7 +14,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep39',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xyuw0/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -24,7 +24,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep38',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xyutc/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -34,7 +34,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep37',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xyuri/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -44,7 +44,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep36',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xyupi/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -54,7 +54,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep35',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xyuna/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -64,7 +64,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep34',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xyuk2/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -74,7 +74,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep33',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6xxgrs/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
@@ -104,7 +104,7 @@ const MOVIES = [
     title: 'Bachelor Point S05 Ep32',
     year: 2025,
     genre: 'Action',
-    poster: 'https://assets.gadgets360cdn.com/pricee/assets/product/202404/Mirai1_1713782244.jpg',
+    poster: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.rajtek24.com%2F2025%2F10%2Fbachelor-point-season-5-episode-33-40-watch-now.html&psig=AOvVaw2mUlrnlqjatQE-lQq6gb8d&ust=1760243426230000&source=images&cd=vfe&opi=89978449&ved=0CBYQjRxqFwoTCPju9Panm5ADFQAAAAAdAAAAABAd',
     streamUrl: 'https://rumble.com/embed/v6wr3pc/?pub=34yunp',
     downloadUrl: 'https://rumble.com/embed/v6wk3gm/?pub=34yunp',
     quality: 'HD'
